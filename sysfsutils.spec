@@ -48,7 +48,7 @@ Ten pakiet zawiera:
 Summary:	Header files for sysfs library
 Summary(pl):	Pliki nag³ówkowe biblioteki sysfs
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{version}
 
 %description devel
 Header files for sysfs library.
@@ -60,7 +60,7 @@ Pliki nag³ówkowe biblioteki sysfs.
 Summary:	Static sysfs library
 Summary(pl):	Statyczna biblioteka sysfs
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}
+Requires:	%{name}-devel = %{version}
 
 %description static
 Static sysfs library.
