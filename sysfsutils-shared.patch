@@ -1,14 +1,16 @@
---- sysfsutils-0.3.0/configure.ac.orig	2003-10-15 14:49:26.000000000 +0200
-+++ sysfsutils-0.3.0/configure.ac	2003-11-10 15:18:14.875718848 +0100
-@@ -9,11 +9,6 @@
- AC_PROG_CC
+--- sysfsutils-0.4.0/configure.ac.orig	2003-12-17 12:34:17.000000000 +0100
++++ sysfsutils-0.4.0/configure.ac	2003-12-18 20:15:13.347874568 +0100
+@@ -10,13 +10,8 @@
  AC_PROG_INSTALL
- AC_PROG_AWK
+ AC_PROG_LN_S
+ AC_PROG_MAKE_SET
 -AC_PROG_RANLIB
--
+ AC_PROG_AWK
+ 
 -# Checks for libraries.
 -# FIXME: Replace `main' with a function in `-lsysfs':
 -AC_CHECK_LIB([sysfs], [sysfs_read_directory])
- 
+-
  # Checks for header files.
  AC_HEADER_DIRENT
+ AC_HEADER_STDC
