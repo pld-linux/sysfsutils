@@ -1,12 +1,12 @@
 Summary:	System utilities package
 Summary(pl):	Pakiet narzêdzi systemowych
 Name:		sysfsutils
-Version:	0.4.0
+Version:	1.0.0
 Release:	1
 License:	LGPL v2.1/GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/linux-diag/%{name}-%{version}.tar.gz
-# Source0-md5:	65baf7c2a74f5ede07115b9ce3efdd88
+# Source0-md5:	0438b08c3feb4a864ddce912b6a830ce
 Patch0:		%{name}-shared.patch
 URL:		http://linux-diag.sourceforge.net/Sysfsutils.html
 BuildRequires:	autoconf >= 2.50
