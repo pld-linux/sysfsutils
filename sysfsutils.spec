@@ -1,12 +1,12 @@
 Summary:	System utilities package
 Summary(pl):	Pakiet narzêdzi systemowych
 Name:		sysfsutils
-Version:	0.3.0
+Version:	0.4.0
 Release:	1
 License:	LGPL v2.1/GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/linux-diag/%{name}-%{version}.tar.gz
-# Source0-md5:	97e4039dffeab17bd19d41f2d8825ac6
+# Source0-md5:	65baf7c2a74f5ede07115b9ce3efdd88
 Patch0:		%{name}-shared.patch
 URL:		http://linux-diag.sourceforge.net/Sysfsutils.html
 BuildRequires:	autoconf >= 2.50
@@ -98,6 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS COPYING ChangeLog NEWS README TODO
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)
