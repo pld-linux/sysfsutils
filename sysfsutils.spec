@@ -1,13 +1,12 @@
 Summary:	System utilities package
 Summary(pl):	Pakiet narzêdzi systemowych
 Name:		sysfsutils
-Version:	0.2.0
-%define	fver	%(echo %{version} | tr . _)
+Version:	0.3.0
 Release:	1
 License:	LGPL v2.1/GPL v2
 Group:		Applications/System
-Source0:	http://dl.sourceforge.net/linux-diag/%{name}-%{fver}.tar.gz
-# Source0-md5:	6e1f2f1848dbca4c329fb58302bed137
+Source0:	http://dl.sourceforge.net/linux-diag/%{name}-%{version}.tar.gz
+# Source0-md5:	97e4039dffeab17bd19d41f2d8825ac6
 Patch0:		%{name}-shared.patch
 URL:		http://linux-diag.sourceforge.net/Sysfsutils.html
 BuildRequires:	autoconf >= 2.50
@@ -69,7 +68,7 @@ Static sysfs library.
 Statyczna biblioteka sysfs.
 
 %prep
-%setup -q -n %{name}-%{fver}
+%setup -q
 %patch0 -p1
 
 %build

@@ -1,63 +1,14 @@
---- sysfsutils-0_2_0/include/Makefile.am.orig	2003-09-04 01:19:08.636889376 +0200
-+++ sysfsutils-0_2_0/include/Makefile.am	2003-09-04 01:18:26.450302712 +0200
-@@ -0,0 +1 @@
-+include_HEADERS = dlist.h libsysfs.h
---- sysfsutils-0_2_0/lib/Makefile.am.orig	2003-08-29 13:43:27.000000000 +0200
-+++ sysfsutils-0_2_0/lib/Makefile.am	2003-09-04 01:17:04.756722024 +0200
-@@ -1,5 +1,5 @@
--lib_LIBRARIES = libsysfs.a
--libsysfs_a_SOURCES = sysfs_utils.c sysfs_dir.c sysfs_bus.c sysfs_class.c \
-+lib_LTLIBRARIES = libsysfs.la
-+libsysfs_la_SOURCES = sysfs_utils.c sysfs_dir.c sysfs_bus.c sysfs_class.c \
- 	sysfs_device.c sysfs_driver.c sysfs.h dlist.c
- INCLUDES = -I../include
- 
---- sysfsutils-0_2_0/cmd/Makefile.am.orig	2003-08-29 13:43:29.000000000 +0200
-+++ sysfsutils-0_2_0/cmd/Makefile.am	2003-09-04 01:19:23.736593872 +0200
-@@ -2,5 +2,5 @@
- systool_SOURCES = systool.c
- lsbus_SOURCES = lsbus.c
- INCLUDES = -I../include
--LDADD = ../lib/libsysfs.a
-+LDADD = ../lib/libsysfs.la
- 
---- sysfsutils-0_2_0/configure.ac.orig	2003-08-29 13:43:23.000000000 +0200
-+++ sysfsutils-0_2_0/configure.ac	2003-09-04 01:18:05.380505808 +0200
-@@ -6,11 +6,7 @@
- 
- # Checks for programs.
+--- sysfsutils-0.3.0/configure.ac.orig	2003-10-15 14:49:26.000000000 +0200
++++ sysfsutils-0.3.0/configure.ac	2003-11-10 15:18:14.875718848 +0100
+@@ -9,11 +9,6 @@
  AC_PROG_CC
+ AC_PROG_INSTALL
+ AC_PROG_AWK
 -AC_PROG_RANLIB
 -
 -# Checks for libraries.
 -# FIXME: Replace `main' with a function in `-lsysfs':
 -AC_CHECK_LIB([sysfs], [sysfs_read_directory])
-+AC_PROG_LIBTOOL
  
  # Checks for header files.
  AC_HEADER_DIRENT
-@@ -25,5 +25,6 @@
- AC_CONFIG_FILES([Makefile
-                  cmd/Makefile
-                  lib/Makefile
-+		 include/Makefile
- 		 test/Makefile])
- AC_OUTPUT
---- sysfsutils-0_2_0/Makefile.am.orig	2003-08-29 13:43:23.000000000 +0200
-+++ sysfsutils-0_2_0/Makefile.am	2003-09-04 01:18:42.719829368 +0200
-@@ -1,5 +1,5 @@
--EXTRA_DIST = docs include
--SUBDIRS = lib cmd test
-+EXTRA_DIST = docs
-+SUBDIRS = lib include cmd test
- 
- dist-hook:
- 	rm -rf `find $(distdir)/docs -name CVS`
---- sysfsutils-0_2_0/test/Makefile.am.orig	2003-08-29 13:43:37.000000000 +0200
-+++ sysfsutils-0_2_0/test/Makefile.am	2003-09-04 01:22:39.390849904 +0200
-@@ -1,4 +1,4 @@
- bin_PROGRAMS = dlist_test
- dlist_test_SOURCES = dlist_test.c
- INCLUDES = -I../include
--LDADD = ../lib/libsysfs.a
-+LDADD = ../lib/libsysfs.la
