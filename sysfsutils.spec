@@ -1,13 +1,12 @@
 Summary:	System utilities package
 Summary(pl):	Pakiet narzêdzi systemowych
 Name:		sysfsutils
-Version:	1.0.0
+Version:	1.1.0
 Release:	1
 License:	LGPL v2.1/GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/linux-diag/%{name}-%{version}.tar.gz
-# Source0-md5:	0438b08c3feb4a864ddce912b6a830ce
-Patch0:		%{name}-shared.patch
+# Source0-md5:	b93a7506906632fe91f65f68c85ceefe
 URL:		http://linux-diag.sourceforge.net/Sysfsutils.html
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -47,7 +46,7 @@ Ten pakiet zawiera:
 Summary:	Header files for sysfs library
 Summary(pl):	Pliki nag³ówkowe biblioteki sysfs
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for sysfs library.
@@ -59,7 +58,7 @@ Pliki nag³ówkowe biblioteki sysfs.
 Summary:	Static sysfs library
 Summary(pl):	Statyczna biblioteka sysfs
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static sysfs library.
@@ -69,7 +68,6 @@ Statyczna biblioteka sysfs.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__libtoolize}
