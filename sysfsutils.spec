@@ -2,7 +2,7 @@ Summary:	System utilities package
 Summary(pl):	Pakiet narzêdzi systemowych
 Name:		sysfsutils
 Version:	1.3.0
-Release:	1
+Release:	2
 License:	LGPL v2.1/GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/linux-diag/%{name}-%{version}.tar.gz
@@ -84,6 +84,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT%{_includedir}/sysfs
+mv $RPM_BUILD_ROOT%{_includedir}/{*.h,sysfs}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -103,7 +106,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/libsysfs.txt
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
-%{_includedir}/*.h
+%{_includedir}/sysfs/*.h
 
 %files static
 %defattr(644,root,root,755)
