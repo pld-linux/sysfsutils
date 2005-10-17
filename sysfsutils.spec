@@ -106,7 +106,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/libsysfs.txt
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
-%{_includedir}/sysfs/*.h
+%{_includedir}/sysfs
 
 %files static
 %defattr(644,root,root,755)
