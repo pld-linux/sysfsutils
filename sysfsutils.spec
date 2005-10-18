@@ -13,6 +13,8 @@ BuildRequires:	automake
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_includedir	%{_prefix}/include/sysfs
+
 %description
 This package's purpose is to provide a set of utilities for
 interfacing with sysfs, a virtual filesystem in Linux kernel versions
@@ -84,9 +86,6 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_includedir}/sysfs
-mv $RPM_BUILD_ROOT%{_includedir}/{*.h,sysfs}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -106,7 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc docs/libsysfs.txt
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
-%{_includedir}/sysfs
+%{_includedir}
 
 %files static
 %defattr(644,root,root,755)
