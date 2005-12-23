@@ -93,7 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 # COPYING contains only note, not actual GPL/LGPL texts
-%doc AUTHORS COPYING ChangeLog NEWS README TODO
+%doc AUTHORS COPYING CREDITS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 %{_mandir}/man1/*
