@@ -2,7 +2,7 @@ Summary:	System utilities package
 Summary(pl):	Pakiet narzêdzi systemowych
 Name:		sysfsutils
 Version:	2.1.0
-Release:	1
+Release:	2
 License:	LGPL v2.1/GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/linux-diag/%{name}-%{version}.tar.gz
