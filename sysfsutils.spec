@@ -1,5 +1,5 @@
 Summary:	System utilities package
-Summary(pl.UTF-8):   Pakiet narzędzi systemowych
+Summary(pl.UTF-8):	Pakiet narzędzi systemowych
 Name:		sysfsutils
 Version:	2.1.0
 Release:	2
@@ -44,7 +44,7 @@ Ten pakiet zawiera:
 
 %package devel
 Summary:	Header files for sysfs library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki sysfs
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki sysfs
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -56,7 +56,7 @@ Pliki nagłówkowe biblioteki sysfs.
 
 %package static
 Summary:	Static sysfs library
-Summary(pl.UTF-8):   Statyczna biblioteka sysfs
+Summary(pl.UTF-8):	Statyczna biblioteka sysfs
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
