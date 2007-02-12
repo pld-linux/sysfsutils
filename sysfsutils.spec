@@ -1,5 +1,5 @@
 Summary:	System utilities package
-Summary(pl):	Pakiet narzêdzi systemowych
+Summary(pl.UTF-8):   Pakiet narzÄ™dzi systemowych
 Name:		sysfsutils
 Version:	2.1.0
 Release:	2
@@ -27,43 +27,43 @@ This package currently includes:
 - systool: an application to view system device information by bus,
   class, and topology.
 
-%description -l pl
-Celem tego pakietu jest dostarczenie zestawu narzêdzi do wspó³pracy z
-sysfs - wirtualnym systemem plików j±der Linuksa w wersji 2.5+
-udostêpniaj±cym drzewo urz±dzeñ systemowych. O ile system plików jest
-bardzo u¿ytecznym interfejsem, autorzy zdecydowali siê dostarczyæ
-stabilny interfejs programistyczny, u³atwiaj±cy aplikacjom odpytywanie
-siê o urz±dzenia systemowe i ich atrybuty.
+%description -l pl.UTF-8
+Celem tego pakietu jest dostarczenie zestawu narzÄ™dzi do wspÃ³Å‚pracy z
+sysfs - wirtualnym systemem plikÃ³w jÄ…der Linuksa w wersji 2.5+
+udostÄ™pniajÄ…cym drzewo urzÄ…dzeÅ„ systemowych. O ile system plikÃ³w jest
+bardzo uÅ¼ytecznym interfejsem, autorzy zdecydowali siÄ™ dostarczyÄ‡
+stabilny interfejs programistyczny, uÅ‚atwiajÄ…cy aplikacjom odpytywanie
+siÄ™ o urzÄ…dzenia systemowe i ich atrybuty.
 
 Ten pakiet zawiera:
-- libsysfs - bibliotekê do dostêpu do urz±dzeñ systemowych,
-- lsbus - ma³± aplikacjê do odczytywania informacji o szynach
+- libsysfs - bibliotekÄ™ do dostÄ™pu do urzÄ…dzeÅ„ systemowych,
+- lsbus - maÅ‚Ä… aplikacjÄ™ do odczytywania informacji o szynach
   systemowych,
-- systool - aplikacjê do przegl±dania informacji o urz±dzeniach
-  systemowych wed³ug szyny, klasy i topologii.
+- systool - aplikacjÄ™ do przeglÄ…dania informacji o urzÄ…dzeniach
+  systemowych wedÅ‚ug szyny, klasy i topologii.
 
 %package devel
 Summary:	Header files for sysfs library
-Summary(pl):	Pliki nag³ówkowe biblioteki sysfs
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe biblioteki sysfs
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for sysfs library.
 
-%description devel -l pl
-Pliki nag³ówkowe biblioteki sysfs.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe biblioteki sysfs.
 
 %package static
 Summary:	Static sysfs library
-Summary(pl):	Statyczna biblioteka sysfs
+Summary(pl.UTF-8):   Statyczna biblioteka sysfs
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static sysfs library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka sysfs.
 
 %prep
