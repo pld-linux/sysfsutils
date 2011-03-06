@@ -1,12 +1,14 @@
 Summary:	System utilities package
 Summary(pl.UTF-8):	Pakiet narzędzi systemowych
 Name:		sysfsutils
-Version:	2.1.0
-Release:	3
+%define	org_version	2.1.0
+Version:	2.2.0
+Release:	1
 License:	LGPL v2.1/GPL v2
 Group:		Applications/System
-Source0:	http://dl.sourceforge.net/linux-diag/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/linux-diag/%{name}-%{org_version}.tar.gz
 # Source0-md5:	14e7dcd0436d2f49aa403f67e1ef7ddc
+Patch0:		%{name}-lsi.patch
 URL:		http://linux-diag.sourceforge.net/Sysfsutils.html
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -67,7 +69,8 @@ Static sysfs library.
 Statyczna biblioteka sysfs.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{org_version}
+%patch0 -p1
 
 %build
 %{__libtoolize}
