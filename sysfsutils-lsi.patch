@@ -1,0 +1,109 @@
+diff -urN sysfsutils-2.1.0/ChangeLog sysfsutils-2.2.0/ChangeLog
+--- sysfsutils-2.1.0/ChangeLog	2006-08-23 09:37:02.000000000 +0200
++++ sysfsutils-2.2.0/ChangeLog	2010-03-17 08:14:50.000000000 +0100
+@@ -1,3 +1,8 @@
++15/03/2010 - Sateesh Kumar Galla <sateesh.galla@lsi.com>
++		* Fixed bug in cdev_name_equal() where 
++		  /sys/class/scsi_host/host20 was a false positive hit for
++		  /sys/class/scsi_host/host2
++
+ 18/07/2006 - Mohan Kumar M <mohan@in.ibm.com>
+ 		* Add subsystem in sysfs_device
+ 
+diff -urN sysfsutils-2.1.0/configure.ac sysfsutils-2.2.0/configure.ac
+--- sysfsutils-2.1.0/configure.ac	2006-08-07 07:08:00.000000000 +0200
++++ sysfsutils-2.2.0/configure.ac	2010-03-15 14:10:08.000000000 +0100
+@@ -1,5 +1,5 @@
+ # Process this file with autoconf to produce a configure script.
+-AC_INIT(sysfsutils, 2.1.0, linux-diag-devel@lists.sourceforge.net)
++AC_INIT(sysfsutils, 2.2.0, linux-diag-devel@lists.sourceforge.net)
+ AM_INIT_AUTOMAKE
+ AC_CONFIG_SRCDIR([config.h.in])
+ AM_CONFIG_HEADER([config.h])
+diff -urN sysfsutils-2.1.0/lib/Makefile.am sysfsutils-2.2.0/lib/Makefile.am
+--- sysfsutils-2.1.0/lib/Makefile.am	2006-08-07 07:08:01.000000000 +0200
++++ sysfsutils-2.2.0/lib/Makefile.am	2010-03-17 08:43:24.000000000 +0100
+@@ -1,7 +1,32 @@
++ # 
++ #  Copyrigth (C) LSI Corp. 2010
++ # 
++ #  This library is free software;you can redistribute it and/or
++ #  modify it uder the terms of the GNU Lesser General Public
++ #  License as published by the Free Software Foundation; either
++ #  version 2.1 of the License, or (at your option) any later version.
++ #
++ #  This library is distributed in the hope that it will be useful,
++ #  but WITHOUT ANY WARRANTY; without even the implied warranty of
++ #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
++ #  Lesser General Public License for more details.
++ #
++ #  You should have received a copy of the GNU Lesser General Public
++ #  License along with this library;if not, write to the Free Software
++ #  Foundation, Inc.,59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
++ #
++ #  NOTE: This file has been changed to increase the version to 
++ #  libsysfs.2.0.2.  
++ #  libsysfs.2.0.2 will fix the issue related to sysfs_get_class_devices()
++ #  not returning some scsi_host class entries under certain conditions.
++ #  Please check NOTE in sysfs_class.c file for more information.
++ #  <sateesh.galla at lsi.com>
++ #
++
+ lib_LTLIBRARIES = libsysfs.la
+ libsysfs_la_SOURCES = sysfs_utils.c sysfs_attr.c sysfs_class.c dlist.c \
+       sysfs_device.c sysfs_driver.c sysfs_bus.c sysfs_module.c sysfs.h
+ INCLUDES = -I../include
+-libsysfs_la_LDFLAGS = -version-info 2:1:0
++libsysfs_la_LDFLAGS = -version-info 2:2:0
+ EXTRA_CFLAGS = @EXTRA_CLFAGS@
+ libsysfs_la_CFLAGS = -Wall -W -Wstrict-prototypes $(EXTRA_CLFAGS)
+diff -urN sysfsutils-2.1.0/lib/sysfs_class.c sysfsutils-2.2.0/lib/sysfs_class.c
+--- sysfsutils-2.1.0/lib/sysfs_class.c	2006-08-07 07:08:01.000000000 +0200
++++ sysfsutils-2.2.0/lib/sysfs_class.c	2010-03-26 13:15:49.000000000 +0100
+@@ -18,8 +18,37 @@
+  *  You should have received a copy of the GNU Lesser General Public
+  *  License along with this library; if not, write to the Free Software
+  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
++ *  
++ *  Fixed a bug in cdev_name_equal()
++ *  
++ *  Copyrigth (C) LSI Corp. 2010
+  *
++ *  This library is free software;you can redistribute it and/or
++ *  modify it uder the terms of the GNU Lesser General Public
++ *  License as published by the Free Software Foundation; either
++ *  version 2.1 of the License, or (at your option) any later version.
++ *
++ *  This library is distributed in the hope that it will be useful,
++ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
++ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
++ *  Lesser General Public License for more details.
++ *
++ *  You should have received a copy of the GNU Lesser General Public
++ *  License along with this library;if not, write to the Free Software
++ *  Foundation, Inc.,59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
++ *
++ *  NOTE: This file has been changed to fix the following issue. 
++ *  ISSUE: sysfs_get_class_devices() does not return all the scsi_host class 
++ *  entries under certain conditions. Suppose if there are "host1", "host2"
++ *  "host3", "host10" and "host20" entries under /sys/class/scsi_host, then,
++ *  if user application calls sysfs_get_class_devices(), the returned dlist *
++ *  linked list dose not contain "host1" and "host2" entries.
++ *  The bug is identified and fixed in cdev_name_equal() function where
++ *  /sys/class/scsi_host/host20 was a false positive hit for 
++ *  /sys/class/scsi_host/host2.
++ *  <sateesh.galla at lsi.com>
+  */
++
+ #include "libsysfs.h"
+ #include "sysfs.h"
+ 
+@@ -66,7 +95,7 @@
+ 		return 0;
+ 
+ 	if (strncmp((char *)a, ((struct sysfs_class_device *)b)->name,
+-				strlen((char *)a)) == 0)
++				SYSFS_NAME_LEN) == 0)
+ 		return 1;
+ 
+ 	return 0;
