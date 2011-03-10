@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Pakiet narzędzi systemowych
 Name:		sysfsutils
 %define	org_version	2.1.0
 Version:	2.2.0
-Release:	1
+Release:	2
 License:	LGPL v2.1/GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/linux-diag/%{name}-%{org_version}.tar.gz
