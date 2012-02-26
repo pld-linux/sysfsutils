@@ -1,12 +1,12 @@
+%define	org_version	2.1.0
 Summary:	System utilities package
 Summary(pl.UTF-8):	Pakiet narzędzi systemowych
 Name:		sysfsutils
-%define	org_version	2.1.0
 Version:	2.2.0
-Release:	2
+Release:	3
 License:	LGPL v2.1/GPL v2
 Group:		Applications/System
-Source0:	http://dl.sourceforge.net/linux-diag/%{name}-%{org_version}.tar.gz
+Source0:	http://downloads.sourceforge.net/linux-diag/%{name}-%{org_version}.tar.gz
 # Source0-md5:	14e7dcd0436d2f49aa403f67e1ef7ddc
 Patch0:		%{name}-lsi.patch
 URL:		http://linux-diag.sourceforge.net/Sysfsutils.html
@@ -97,17 +97,22 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 # COPYING contains only note, not actual GPL/LGPL texts
 %doc AUTHORS COPYING CREDITS ChangeLog NEWS README TODO
-%attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
-%{_mandir}/man1/*
+%attr(755,root,root) %{_bindir}/dlist_test
+%attr(755,root,root) %{_bindir}/get_device
+%attr(755,root,root) %{_bindir}/get_driver
+%attr(755,root,root) %{_bindir}/get_module
+%attr(755,root,root) %{_bindir}/systool
+%attr(755,root,root) %{_libdir}/libsysfs.so.*.*.*
+%ghost %{_libdir}/libsysfs.so.2
+%{_mandir}/man1/systool.1*
 
 %files devel
 %defattr(644,root,root,755)
 %doc docs/libsysfs.txt
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
+%{_libdir}/libsysfs.so
+%{_libdir}/libsysfs.la
 %{_includedir}/sysfs
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libsysfs.a
