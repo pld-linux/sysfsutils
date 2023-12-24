@@ -1,18 +1,19 @@
-%define	org_version	2.1.0
+%define	org_version	2.1.1
 Summary:	System utilities package
 Summary(pl.UTF-8):	Pakiet narzędzi systemowych
 Name:		sysfsutils
 Version:	2.2.0
-Release:	4
+Release:	5
 License:	LGPL v2.1/GPL v2
 Group:		Applications/System
-Source0:	http://downloads.sourceforge.net/linux-diag/%{name}-%{org_version}.tar.gz
-# Source0-md5:	14e7dcd0436d2f49aa403f67e1ef7ddc
+#Source0Download: https://github.com/linux-ras/sysfsutils/releases
+Source0:	https://github.com/linux-ras/sysfsutils/archive/v%{org_version}/%{name}-%{org_version}.tar.gz
+# Source0-md5:	537c110be7244905997262854505c30f
 Patch0:		%{name}-lsi.patch
-URL:		http://linux-diag.sourceforge.net/Sysfsutils.html
+URL:		https://github.com/linux-ras/sysfsutils
 BuildRequires:	autoconf >= 2.50
-BuildRequires:	automake
-BuildRequires:	libtool
+BuildRequires:	automake >= 1:1.11
+BuildRequires:	libtool >= 2:2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -78,7 +79,9 @@ Statyczna biblioteka sysfs.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	--disable-silent-rules \
+	--with-pci.ids=/lib/hwdata/pci.ids
 %{__make}
 
 %install
@@ -96,11 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 # COPYING contains only note, not actual GPL/LGPL texts
-%doc AUTHORS COPYING CREDITS ChangeLog NEWS README TODO
-%attr(755,root,root) %{_bindir}/dlist_test
-%attr(755,root,root) %{_bindir}/get_device
-%attr(755,root,root) %{_bindir}/get_driver
-%attr(755,root,root) %{_bindir}/get_module
+%doc AUTHORS COPYING CREDITS README TODO
 %attr(755,root,root) %{_bindir}/systool
 %attr(755,root,root) %{_libdir}/libsysfs.so.*.*.*
 %ghost %{_libdir}/libsysfs.so.2
@@ -112,6 +111,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libsysfs.so
 %{_libdir}/libsysfs.la
 %{_includedir}/sysfs
+%{_pkgconfigdir}/libsysfs.pc
 
 %files static
 %defattr(644,root,root,755)
